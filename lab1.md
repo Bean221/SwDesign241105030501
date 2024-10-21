@@ -31,6 +31,8 @@ Kiến trúc Client-Server với các thành phần như sau:
 - **Bảo mật**: Bảo vệ dữ liệu cá nhân của nhân viên thông qua kiểm soát truy cập chặt chẽ.
 - **Tính tự động**: Giảm thiểu can thiệp thủ công và tự động hóa quy trình thanh toán.
 
+### Biểu Đồ Package Mô Tả Kiến Trúc
+
 ![Biểu Đồ Package Mô Tả Kiến Trúc](https://www.planttext.com/api/plantuml/png/R55BRiCW4DrpYb7ssVG0LUmu2wGkB4LUHLbCoJH1nM01ZXH5ELaMFLAlK3wnGwiYWPWFxpDytxzMpgFrOwyO6r1yuf5WiLQIj8Tg69GKwANH2xWo26lNERB0jIVxWOBsW0uwNfGg8SWvM1ljhL6fdbFiLX0KoB0bUoOx4zIZapf2l9cZ50aWtNArQdd6RFalm0OzlgEZlsYRVb3cGWHJGtezPPiwTpNroqDbAeVm7yrRSQB3g8B7o245pIGjNe9N1TNeJPzCPOrp674w3ilbwpICnvXY9hjBP-u8ri9EzqBeb7gAAvuycTYAz27-vWy0003__mC0)
 # Cơ Chế Phân Tích
 
@@ -63,6 +65,36 @@ Dưới đây là danh sách các cơ chế cần giải quyết trong hệ th�
 ## Cơ Chế Bảo Mật Dữ Liệu
 
 - **Giải thích**: Mã hóa thông tin nhạy cảm như dữ liệu ngân hàng và địa chỉ để đảm bảo an toàn cho dữ liệu cá nhân.
+
+# Ca Sử Dụng Payment và Maintain Timecard
+
+## 1. Ca Sử Dụng: Payment
+
+### Các Lớp Phân Tích
+
+- **Employee**: Nhân viên nhận thanh toán.
+- **PayrollSystem**: Hệ thống xử lý tiền lương.
+- **PaymentProcessor**: Xử lý các giao dịch thanh toán.
+- **Bank**: Đối tác thực hiện thanh toán.
+
+### Biểu Đồ Sequence
+
+![Biểu Đồ Package Mô Tả Kiến Trúc](https://www.planttext.com/api/plantuml/png/V53B3S8m3Brd2Y_00ZcW2iGLLLGC4BMkLE749NOEcQq7Hc855AbKBGYkx-Vt_9mUbQYBcZmPS_8ZSKQ4tHvgboCJDLaKlOKBtXEA5jXZKBEXPtqXwiWjYd2qS7JK9dAAQzD6Ktm75suMPcXH5lH7AeT-YFvlvaVtwzYjMa2ZJfDyBtYljt1c7Vgyd30LXguyw0K00F__0m00)
+
+---
+
+## 2. Ca Sử Dụng: Maintain Timecard
+
+### Các Lớp Phân Tích
+
+- **Employee**: Nhân viên nhập thẻ thời gian.
+- **Timecard**: Đại diện cho thẻ thời gian.
+- **TimecardManager**: Quản lý các thẻ thời gian.
+- **Database**: Nơi lưu trữ dữ liệu thẻ thời gian.
+
+### Biểu Đồ Sequence
+
+![Biểu Đồ Package Mô Tả Kiến Trúc](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3XUNQsv1JdvbQgg2hfr2I6PkQd9YKOflObvYUcgHbO9hNabg4LoO2qqUMOkLWdDHQc99Abm0fBUe4fiMbyIInAJ4ubGhXU34CeG6BfWuLfSuv-UbPHRbWhLWCnJc3Ii5l_oIpBHAXU3IvEJKuc8kBeVKl1IGJm40003__mC0)
 
 
 
