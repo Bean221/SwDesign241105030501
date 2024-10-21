@@ -65,10 +65,7 @@ Dưới đây là danh sách các cơ chế cần giải quyết trong hệ th�
 ## Cơ Chế Bảo Mật Dữ Liệu
 
 - **Giải thích**: Mã hóa thông tin nhạy cảm như dữ liệu ngân hàng và địa chỉ để đảm bảo an toàn cho dữ liệu cá nhân.
-
-# Ca Sử Dụng Payment và Maintain Timecard
-
-## 3. Ca Sử Dụng: Payment
+# 3. Ca Sử Dụng: Payment
 
 ### Các Lớp Phân Tích
 
@@ -83,7 +80,7 @@ Dưới đây là danh sách các cơ chế cần giải quyết trong hệ th�
 
 ---
 
-## 4. Ca Sử Dụng: Maintain Timecard
+# 4. Ca Sử Dụng: Maintain Timecard
 
 ### Các Lớp Phân Tích
 
