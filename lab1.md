@@ -95,6 +95,9 @@ Dưới đây là danh sách các cơ chế cần giải quyết trong hệ th�
 ### Biểu Đồ Sequence
 
 ![Biểu Đồ Package Mô Tả Kiến Trúc](https://www.planttext.com/api/plantuml/png/UhzxlqDnIM9HIMbk3XUNQsv1JdvbQgg2hfr2I6PkQd9YKOflObvYUcgHbO9hNabg4LoO2qqUMOkLWdDHQc99Abm0fBUe4fiMbyIInAJ4ubGhXU34CeG6BfWuLfSuv-UbPHRbWhLWCnJc3Ii5l_oIpBHAXU3IvEJKuc8kBeVKl1IGJm40003__mC0)
+## Tóm Tắt
+
+Cả hai ca sử dụng đều hướng tới việc cải thiện quy trình quản lý và thanh toán, với các lớp phân tích cụ thể giúp đảm bảo tính chính xác và hiệu quả trong việc xử lý thông tin. Hệ thống cần được thiết kế để tự động hóa và tối ưu hóa cả hai quy trình này, từ việc thanh toán cho nhân viên đến việc quản lý thời gian làm việc của họ.
 
 
 
