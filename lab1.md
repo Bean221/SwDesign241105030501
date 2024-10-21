@@ -1,6 +1,6 @@
-# lab01
+# Lab01 
 
-# Phân Tích Kiến Trúc
+# 1.Phân Tích Kiến Trúc
 
 ## Đề Xuất Kiến Trúc
 
@@ -34,7 +34,7 @@ Kiến trúc Client-Server với các thành phần như sau:
 ### Biểu Đồ Package Mô Tả Kiến Trúc
 
 ![Biểu Đồ Package Mô Tả Kiến Trúc](https://www.planttext.com/api/plantuml/png/R55BRiCW4DrpYb7ssVG0LUmu2wGkB4LUHLbCoJH1nM01ZXH5ELaMFLAlK3wnGwiYWPWFxpDytxzMpgFrOwyO6r1yuf5WiLQIj8Tg69GKwANH2xWo26lNERB0jIVxWOBsW0uwNfGg8SWvM1ljhL6fdbFiLX0KoB0bUoOx4zIZapf2l9cZ50aWtNArQdd6RFalm0OzlgEZlsYRVb3cGWHJGtezPPiwTpNroqDbAeVm7yrRSQB3g8B7o245pIGjNe9N1TNeJPzCPOrp674w3ilbwpICnvXY9hjBP-u8ri9EzqBeb7gAAvuycTYAz27-vWy0003__mC0)
-# Cơ Chế Phân Tích
+# 2.Cơ Chế Phân Tích
 
 Dưới đây là danh sách các cơ chế cần giải quyết trong hệ thống cùng lý do cho mỗi cơ chế:
 
@@ -68,7 +68,7 @@ Dưới đây là danh sách các cơ chế cần giải quyết trong hệ th�
 
 # Ca Sử Dụng Payment và Maintain Timecard
 
-## 1. Ca Sử Dụng: Payment
+## 3. Ca Sử Dụng: Payment
 
 ### Các Lớp Phân Tích
 
@@ -83,7 +83,7 @@ Dưới đây là danh sách các cơ chế cần giải quyết trong hệ th�
 
 ---
 
-## 2. Ca Sử Dụng: Maintain Timecard
+## 4. Ca Sử Dụng: Maintain Timecard
 
 ### Các Lớp Phân Tích
 
