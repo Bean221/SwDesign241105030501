@@ -2,7 +2,43 @@
 
 # 1.Phân Tích Kiến Trúc
 
-## Đề Xuất Kiến Trúc
+# Đề Xuất Kiến Trúc Client-Server
+
+## 1. Phân chia trách nhiệm rõ ràng
+Trong kiến trúc Client-Server:
+- **Client** đảm nhiệm việc thu thập dữ liệu, hiển thị giao diện người dùng, và xử lý tương tác.
+- **Server** chịu trách nhiệm xử lý nghiệp vụ, quản lý dữ liệu và xử lý các yêu cầu từ nhiều Client khác nhau.
+
+Sự phân chia này giúp cải thiện tính rõ ràng và dễ bảo trì của hệ thống.
+
+## 2. Khả năng mở rộng
+Khi nhu cầu hệ thống tăng lên:
+- Có thể tăng số lượng hoặc công suất của các server để đáp ứng nhu cầu.
+- Bổ sung thêm các Client mà không cần thiết kế lại hệ thống từ đầu.
+
+Điều này giúp kiến trúc Client-Server dễ dàng mở rộng theo nhu cầu thực tế.
+
+## 3. Bảo mật tốt hơn
+Dữ liệu thường được lưu trữ và quản lý tập trung ở phía Server, giúp:
+- Dễ dàng quản lý truy cập và bảo vệ dữ liệu.
+- Áp dụng các biện pháp bảo mật như xác thực, mã hóa, và tường lửa ở phía Server để bảo vệ toàn bộ hệ thống.
+
+## 4. Tối ưu hóa hiệu năng
+- Client không cần xử lý nhiều tác vụ phức tạp mà chỉ thực hiện yêu cầu với Server, giảm tải xử lý cho máy người dùng.
+- Server được thiết kế mạnh mẽ, tối ưu cho xử lý khối lượng lớn dữ liệu, đảm bảo hiệu suất tổng thể của hệ thống.
+
+## 5. Dễ dàng bảo trì và cập nhật
+- Các cập nhật hay thay đổi chỉ cần triển khai ở phía Server, mà không ảnh hưởng đến Client.
+- Điều này giúp đơn giản hóa quá trình triển khai và bảo trì, giảm chi phí quản lý.
+
+## 6. Hỗ trợ môi trường phân tán
+Mô hình Client-Server hỗ trợ:
+- Nhiều Client kết nối với một hoặc nhiều Server từ các vị trí khác nhau.
+- Phù hợp cho các hệ thống phân tán như hệ thống quản lý tập trung, các dịch vụ web, hoặc các ứng dụng doanh nghiệp.
+
+---
+
+Nhờ vào các ưu điểm trên, kiến trúc Client-Server là lựa chọn phù hợp cho nhiều ứng dụng yêu cầu khả năng mở rộng, tính bảo mật cao, và hiệu năng tối ưu trong môi trường kết nối nhiều người dùng.
 
 Kiến trúc Client-Server với các thành phần như sau:
 
