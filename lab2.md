@@ -1,169 +1,235 @@
-# Phân tích Các Ca Sử Dụng trong Hệ Thống Payroll System
+# Lab 2 Lê Minh Tuấn
+# Các Phân Tích Còn Lại Trong Payroll System 
+## 1. Select Payment
 
-## Kiến Trúc Client-Server
+### Mô tả
+Người dùng chọn phương thức thanh toán cho đơn hàng của họ trong quy trình mua sắm trực tuyến.
 
-### 1. Quản lý Nhân viên
+### Các bước thực hiện
+1. **Khởi động**
+   - Người dùng truy cập trang thanh toán sau khi đã thêm sản phẩm vào giỏ hàng.
+   
+2. **Hiển thị tùy chọn thanh toán**
+   - Hệ thống hiển thị các phương thức thanh toán có sẵn (ví dụ: thẻ tín dụng, PayPal, chuyển khoản ngân hàng, tiền mặt khi nhận hàng).
 
-#### a. Thêm Nhân viên
-- **Mô tả**: Quản trị viên thêm thông tin của nhân viên mới vào hệ thống.
-- **Thao tác**:
-  1. Đăng nhập với quyền quản trị.
-  2. Truy cập giao diện "Thêm Nhân viên".
-  3. Nhập thông tin nhân viên (họ tên, mã nhân viên, ngày sinh, địa chỉ, phòng ban, vị trí, lương cơ bản).
-  4. Nhấn "Lưu" để hoàn tất.
-- **Kết quả**: Nhân viên mới được lưu vào hệ thống.
+3. **Người dùng chọn phương thức thanh toán**
+   - Người dùng chọn một trong các phương thức thanh toán bằng cách nhấn vào lựa chọn tương ứng.
 
-#### b. Cập nhật Thông tin Nhân viên
-- **Mô tả**: Cập nhật thông tin của nhân viên hiện có.
-- **Thao tác**:
-  1. Đăng nhập vào hệ thống.
-  2. Chọn "Danh sách Nhân viên".
-  3. Tìm và chọn nhân viên cần cập nhật.
-  4. Sửa đổi thông tin và nhấn "Cập nhật".
-- **Kết quả**: Thông tin nhân viên được cập nhật.
+4. **Nhập thông tin cần thiết**
+   - Nếu phương thức thanh toán yêu cầu thông tin bổ sung (ví dụ: số thẻ tín dụng, địa chỉ PayPal), người dùng nhập thông tin.
 
-#### c. Xóa Nhân viên
-- **Mô tả**: Xóa thông tin nhân viên khỏi hệ thống.
-- **Thao tác**:
-  1. Đăng nhập với quyền quản trị.
-  2. Chọn "Danh sách Nhân viên".
-  3. Chọn nhân viên cần xóa.
-  4. Nhấn "Xóa" và xác nhận.
-- **Kết quả**: Nhân viên bị xóa khỏi hệ thống.
+5. **Xác nhận lựa chọn**
+   - Hệ thống hiển thị tóm tắt phương thức thanh toán đã chọn và thông tin nhập vào.
+   - Người dùng xác nhận lựa chọn hoặc quay lại để chỉnh sửa.
 
-#### d. Xem Thông tin Nhân viên
-- **Mô tả**: Xem thông tin chi tiết của một nhân viên.
-- **Thao tác**:
-  1. Đăng nhập vào hệ thống.
-  2. Chọn "Danh sách Nhân viên".
-  3. Chọn nhân viên để xem chi tiết.
-- **Kết quả**: Thông tin chi tiết của nhân viên được hiển thị.
+6. **Xử lý thanh toán**
+   - Hệ thống gửi yêu cầu thanh toán đến cổng thanh toán tương ứng.
+   - Nhận phản hồi từ cổng thanh toán (thành công hoặc thất bại).
 
----
+7. **Kết quả thanh toán**
+   - Nếu thanh toán thành công:
+     - Hiển thị thông báo thành công.
+     - Cập nhật trạng thái đơn hàng.
+   - Nếu thanh toán thất bại:
+     - Hiển thị thông báo lỗi.
+     - Cho phép người dùng chọn lại phương thức thanh toán hoặc thử lại.
 
-### 2. Quản lý Lương
-
-#### a. Tính Lương
-- **Mô tả**: Hệ thống tính lương cho nhân viên dựa trên dữ liệu nhập vào.
-- **Thao tác**:
-  1. Đăng nhập với quyền quản trị.
-  2. Chọn "Tính Lương".
-  3. Nhập thời gian làm việc, các khoản phụ cấp, khấu trừ, v.v.
-  4. Nhấn "Tính toán".
-- **Kết quả**: Hệ thống hiển thị kết quả lương cho từng nhân viên.
-
-#### b. Cập nhật Thông tin Lương
-- **Mô tả**: Điều chỉnh thông tin lương của nhân viên.
-- **Thao tác**:
-  1. Đăng nhập vào hệ thống.
-  2. Chọn "Quản lý Lương".
-  3. Chọn nhân viên và sửa đổi thông tin lương.
-  4. Nhấn "Lưu".
-- **Kết quả**: Thông tin lương của nhân viên được cập nhật.
-
-#### c. Xem Bảng Lương
-- **Mô tả**: Nhân viên xem bảng lương của mình.
-- **Thao tác**:
-  1. Nhân viên đăng nhập.
-  2. Chọn "Xem Bảng Lương".
-  3. Chọn tháng/năm muốn xem.
-- **Kết quả**: Bảng lương hiển thị cho nhân viên.
+### Các yếu tố liên quan
+- **Người dùng**: Cá nhân thực hiện giao dịch.
+- **Hệ thống**: Trang web hoặc ứng dụng hỗ trợ mua sắm.
+- **Cổng thanh toán**: Dịch vụ xử lý giao dịch (ví dụ: Stripe, PayPal).
 
 ---
 
-### 3. Quản lý Nghỉ phép
+## 2. Create Employee
 
-#### a. Đăng ký Nghỉ phép
-- **Mô tả**: Nhân viên gửi yêu cầu nghỉ phép.
-- **Thao tác**:
-  1. Nhân viên đăng nhập.
-  2. Chọn "Đăng ký Nghỉ phép".
-  3. Nhập thông tin (ngày bắt đầu, ngày kết thúc, lý do).
-  4. Nhấn "Gửi yêu cầu".
-- **Kết quả**: Yêu cầu nghỉ phép được gửi đến quản lý.
+### Mô tả
+Người quản trị thêm một nhân viên mới vào hệ thống.
 
-#### b. Duyệt Nghỉ phép
-- **Mô tả**: Quản lý xem xét và phê duyệt yêu cầu nghỉ phép.
-- **Thao tác**:
-  1. Quản lý đăng nhập.
-  2. Chọn "Danh sách yêu cầu Nghỉ phép".
-  3. Xem chi tiết yêu cầu.
-  4. Nhấn "Phê duyệt" hoặc "Từ chối".
-- **Kết quả**: Trạng thái yêu cầu nghỉ phép được cập nhật.
+### Các bước thực hiện
+1. **Khởi động**
+   - Quản trị viên truy cập trang quản lý nhân viên.
 
-#### c. Xem Lịch Sử Nghỉ phép
-- **Mô tả**: Nhân viên xem lịch sử nghỉ phép của mình.
-- **Thao tác**:
-  1. Nhân viên đăng nhập.
-  2. Chọn "Xem Lịch sử Nghỉ phép".
-- **Kết quả**: Danh sách các lần nghỉ phép trước đó được hiển thị.
+2. **Hiển thị form thêm nhân viên**
+   - Hệ thống hiển thị form yêu cầu thông tin cần thiết (tên, địa chỉ, email, số điện thoại, vị trí, v.v.).
 
----
+3. **Nhập thông tin nhân viên**
+   - Quản trị viên nhập thông tin vào các trường tương ứng.
 
-### 4. Báo cáo và Phân tích
+4. **Xác nhận thông tin**
+   - Hệ thống hiển thị tóm tắt thông tin đã nhập.
+   - Quản trị viên xác nhận hoặc chỉnh sửa thông tin.
 
-#### a. Tạo Báo cáo Lương
-- **Mô tả**: Quản trị viên tạo báo cáo tổng hợp về chi phí lương.
-- **Thao tác**:
-  1. Đăng nhập vào hệ thống.
-  2. Chọn "Tạo Báo cáo".
-  3. Chọn tiêu chí báo cáo (theo phòng ban, thời gian).
-  4. Nhấn "Tạo báo cáo".
-- **Kết quả**: Báo cáo lương được tạo và có thể tải về hoặc xem trực tiếp.
+5. **Lưu thông tin nhân viên**
+   - Hệ thống lưu thông tin vào cơ sở dữ liệu.
 
-#### b. Phân tích Dữ liệu Nhân sự
-- **Mô tả**: Hệ thống cung cấp báo cáo về hiệu suất làm việc của nhân viên.
-- **Thao tác**:
-  1. Quản trị viên đăng nhập.
-  2. Chọn "Phân tích Dữ liệu".
-  3. Chọn các tiêu chí phân tích.
-  4. Nhấn "Xem Báo cáo".
-- **Kết quả**: Báo cáo phân tích dữ liệu nhân sự được hiển thị.
+6. **Thông báo thành công**
+   - Hệ thống hiển thị thông báo "Nhân viên đã được tạo thành công."
+
+### Các yếu tố liên quan
+- **Người quản trị**: Người thực hiện thao tác.
+- **Hệ thống**: Giao diện quản lý nhân viên.
+- **Cơ sở dữ liệu**: Nơi lưu trữ thông tin nhân viên.
 
 ---
 
-### 5. Quản lý Người dùng
+## 3. Maintain Purchase Order
 
-#### a. Đăng nhập
-- **Mô tả**: Người dùng đăng nhập vào hệ thống.
-- **Thao tác**:
-  1. Mở giao diện đăng nhập.
-  2. Nhập tên đăng nhập và mật khẩu.
-  3. Nhấn "Đăng nhập".
-- **Kết quả**: Người dùng được chuyển đến giao diện chính của hệ thống.
+### Mô tả
+Người dùng cập nhật thông tin đơn hàng mua.
 
-#### b. Đăng xuất
-- **Mô tả**: Người dùng đăng xuất khỏi hệ thống.
-- **Thao tác**:
-  1. Nhấn nút "Đăng xuất".
-- **Kết quả**: Người dùng được chuyển về giao diện đăng nhập.
+### Các bước thực hiện
+1. **Khởi động**
+   - Người dùng truy cập trang quản lý đơn hàng.
 
-#### c. Quên Mật khẩu
-- **Mô tả**: Hệ thống hỗ trợ khôi phục mật khẩu.
-- **Thao tác**:
-  1. Nhấn "Quên Mật khẩu?".
-  2. Nhập địa chỉ email đã đăng ký.
-  3. Nhận email hướng dẫn để đặt lại mật khẩu.
-- **Kết quả**: Người dùng có thể thiết lập lại mật khẩu mới.
+2. **Hiển thị danh sách đơn hàng**
+   - Hệ thống hiển thị danh sách các đơn hàng hiện có.
+
+3. **Chọn đơn hàng cần cập nhật**
+   - Người dùng chọn đơn hàng muốn chỉnh sửa.
+
+4. **Hiển thị thông tin đơn hàng**
+   - Hệ thống hiển thị thông tin chi tiết của đơn hàng đã chọn.
+
+5. **Chỉnh sửa thông tin**
+   - Người dùng thay đổi các thông tin cần thiết (số lượng, giá cả, trạng thái, v.v.).
+
+6. **Xác nhận thay đổi**
+   - Hệ thống hiển thị tóm tắt các thay đổi.
+   - Người dùng xác nhận hoặc quay lại chỉnh sửa.
+
+7. **Lưu thông tin**
+   - Hệ thống cập nhật thông tin trong cơ sở dữ liệu.
+
+8. **Thông báo thành công**
+   - Hệ thống hiển thị thông báo "Đơn hàng đã được cập nhật thành công."
+
+### Các yếu tố liên quan
+- **Người dùng**: Người quản lý đơn hàng.
+- **Hệ thống**: Giao diện quản lý đơn hàng.
+- **Cơ sở dữ liệu**: Nơi lưu trữ thông tin đơn hàng.
+
+---
+
+## 4. Login
+
+### Mô tả
+Người dùng đăng nhập vào hệ thống.
+
+### Các bước thực hiện
+1. **Khởi động**
+   - Người dùng truy cập trang đăng nhập.
+
+2. **Hiển thị form đăng nhập**
+   - Hệ thống hiển thị các trường nhập (tên đăng nhập, mật khẩu).
+
+3. **Nhập thông tin đăng nhập**
+   - Người dùng nhập tên đăng nhập và mật khẩu.
+
+4. **Xác thực thông tin**
+   - Hệ thống kiểm tra thông tin với cơ sở dữ liệu.
+
+5. **Đăng nhập thành công**
+   - Nếu thông tin đúng, chuyển đến trang chính.
+   - Nếu thông tin sai, hiển thị thông báo lỗi.
+
+6. **Thông báo trạng thái**
+   - Hệ thống thông báo "Đăng nhập thành công" hoặc "Tài khoản không hợp lệ."
+
+### Các yếu tố liên quan
+- **Người dùng**: Người cần truy cập hệ thống.
+- **Hệ thống**: Giao diện đăng nhập.
+- **Cơ sở dữ liệu**: Nơi lưu trữ thông tin tài khoản.
 
 ---
 
-### 6. Tích hợp và Bảo mật
+## 5. Create Administrative Report
 
-#### a. Xác thực Người dùng
-- **Mô tả**: Hệ thống kiểm tra thông tin đăng nhập của người dùng.
-- **Thao tác**:
-  1. Người dùng nhập tên và mật khẩu.
-  2. Hệ thống xác thực và chuyển hướng đến giao diện phù hợp.
-- **Kết quả**: Người dùng được xác thực thành công hoặc thông báo lỗi.
+### Mô tả
+Người quản trị tạo báo cáo hành chính.
 
-#### b. Quản lý Quyền Truy cập
-- **Mô tả**: Quản trị viên thiết lập quyền truy cập cho người dùng.
-- **Thao tác**:
-  1. Quản trị viên đăng nhập.
-  2. Chọn "Quản lý Người dùng".
-  3. Chọn người dùng và điều chỉnh quyền truy cập.
-  4. Nhấn "Lưu".
-- **Kết quả**: Quyền truy cập của người dùng được cập nhật.
+### Các bước thực hiện
+1. **Khởi động**
+   - Quản trị viên truy cập trang tạo báo cáo.
+
+2. **Chọn loại báo cáo**
+   - Hệ thống hiển thị các loại báo cáo có sẵn (báo cáo doanh thu, báo cáo nhân sự, v.v.).
+
+3. **Nhập thông tin báo cáo**
+   - Quản trị viên nhập các thông tin cần thiết cho báo cáo (ngày, dữ liệu cần báo cáo).
+
+4. **Tạo báo cáo**
+   - Hệ thống xử lý và tạo báo cáo dựa trên thông tin đã nhập.
+
+5. **Xem và lưu báo cáo**
+   - Hệ thống hiển thị báo cáo đã tạo.
+   - Quản trị viên có thể lưu hoặc in báo cáo.
+
+6. **Thông báo hoàn thành**
+   - Hệ thống hiển thị thông báo "Báo cáo đã được tạo thành công."
+
+### Các yếu tố liên quan
+- **Người quản trị**: Người tạo báo cáo.
+- **Hệ thống**: Giao diện tạo báo cáo.
+- **Cơ sở dữ liệu**: Nơi truy xuất thông tin báo cáo.
 
 ---
+
+## 6. Maintain Employee Info
+
+### Mô tả
+Quản trị viên cập nhật thông tin của nhân viên.
+
+### Các bước thực hiện
+1. **Khởi động**
+   - Quản trị viên truy cập trang quản lý nhân viên.
+
+2. **Hiển thị danh sách nhân viên**
+   - Hệ thống hiển thị danh sách nhân viên hiện có.
+
+3. **Chọn nhân viên cần cập nhật**
+   - Quản trị viên chọn nhân viên muốn chỉnh sửa.
+
+4. **Hiển thị thông tin nhân viên**
+   - Hệ thống hiển thị thông tin chi tiết của nhân viên đã chọn.
+
+5. **Chỉnh sửa thông tin**
+   - Quản trị viên thay đổi thông tin cần thiết (địa chỉ, số điện thoại, vị trí công việc, v.v.).
+
+6. **Xác nhận thay đổi**
+   - Hệ thống hiển thị tóm tắt các thay đổi.
+   - Quản trị viên xác nhận hoặc quay lại chỉnh sửa.
+
+7. **Lưu thông tin**
+   - Hệ thống cập nhật thông tin trong cơ sở dữ liệu.
+
+8. **Thông báo thành công**
+   - Hệ thống hiển thị thông báo "Thông tin nhân viên đã được cập nhật thành công."
+
+### Các yếu tố liên quan
+- **Người quản trị**: Người thực hiện thao tác.
+- **Hệ thống**: Giao diện quản lý nhân viên.
+- **Cơ sở dữ liệu**: Nơi lưu trữ thông tin nhân viên.
+
+---
+
+## 7. Run Payroll
+
+### Mô tả
+Quản trị viên thực hiện quy trình thanh toán lương cho nhân viên.
+
+### Các bước thực hiện
+1. **Khởi động**
+   - Quản trị viên truy cập trang thanh toán lương.
+
+2. **Hiển thị danh sách nhân viên**
+   - Hệ thống hiển thị danh sách nhân viên có lương cần thanh toán.
+
+3. **Xác nhận thông tin lương**
+   - Quản trị viên kiểm tra và xác nhận thông tin lương của nhân viên.
+
+4. **Chọn kỳ thanh toán**
+   - Quản trị viên chọn kỳ thanh toán (hàng tháng, hàng quý).
+
+5. **Chạy quy trình thanh toán**
+   - Hệ thống tính toán tổng lương dựa trên thông tin
