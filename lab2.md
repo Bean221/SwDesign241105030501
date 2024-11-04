@@ -167,6 +167,3 @@
 - **Kết quả**: Quyền truy cập của người dùng được cập nhật.
 
 ---
-
-## Kết luận
-Phân tích chi tiết các ca sử dụng này giúp xác định rõ chức năng và quy trình trong hệ thống Payroll System. Điều này tạo điều kiện thuận lợi cho việc thiết kế, phát triển và kiểm thử hệ thống. Nếu bạn cần thêm thông tin hoặc muốn tập trung vào một phần cụ thể nào, hãy cho tôi biết!
