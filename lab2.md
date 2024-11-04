@@ -233,3 +233,54 @@ Quản trị viên thực hiện quy trình thanh toán lương cho nhân viên.
 
 5. **Chạy quy trình thanh toán**
    - Hệ thống tính toán tổng lương dựa trên thông tin
+  
+----
+import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
+class Timecard {
+    private String employeeName;
+    private ArrayList<String> timeEntries;
+
+    public Timecard(String employeeName) {
+        this.employeeName = employeeName;
+        this.timeEntries = new ArrayList<>();
+    }
+
+    public void clockIn() {
+        String timeIn = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        timeEntries.add("Clock In: " + timeIn);
+        System.out.println(employeeName + " clocked in at " + timeIn);
+    }
+
+    public void clockOut() {
+        String timeOut = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        timeEntries.add("Clock Out: " + timeOut);
+        System.out.println(employeeName + " clocked out at " + timeOut);
+    }
+
+    public void displayTimecard() {
+        System.out.println("Timecard for " + employeeName + ":");
+        for (String entry : timeEntries) {
+            System.out.println(entry);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Timecard timecard = new Timecard("Nguyen Van A");
+
+        timecard.clockIn(); // Nhân viên clock in
+        // Giả lập thời gian làm việc
+        try {
+            Thread.sleep(2000); // Giả lập 2 giây
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        timecard.clockOut(); // Nhân viên clock out
+
+        timecard.displayTimecard(); // Hiển thị thời gian làm việc
+    }
+}
