@@ -235,52 +235,131 @@ Quản trị viên thực hiện quy trình thanh toán lương cho nhân viên.
    - Hệ thống tính toán tổng lương dựa trên thông tin
   
 ----
+# Mô phỏng trường hợp sử dụng Maintain Timecard
+
+Mã Java dưới đây mô phỏng trường hợp sử dụng "Maintain Timecard" (Duy trì bảng chấm công). Trường hợp này bao gồm các hành động như tạo, cập nhật và xóa thông tin chấm công của một nhân viên.
+
+Giả định rằng mỗi bảng chấm công có các thuộc tính cơ bản như `employeeId`, `date`, `hoursWorked`, và `status`.
+
+```java
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Optional;
 
 class Timecard {
-    private String employeeName;
-    private ArrayList<String> timeEntries;
+    private int employeeId;
+    private LocalDate date;
+    private double hoursWorked;
+    private String status;
 
-    public Timecard(String employeeName) {
-        this.employeeName = employeeName;
-        this.timeEntries = new ArrayList<>();
+    public Timecard(int employeeId, LocalDate date, double hoursWorked, String status) {
+        this.employeeId = employeeId;
+        this.date = date;
+        this.hoursWorked = hoursWorked;
+        this.status = status;
     }
 
-    public void clockIn() {
-        String timeIn = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        timeEntries.add("Clock In: " + timeIn);
-        System.out.println(employeeName + " clocked in at " + timeIn);
+    public int getEmployeeId() {
+        return employeeId;
     }
 
-    public void clockOut() {
-        String timeOut = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        timeEntries.add("Clock Out: " + timeOut);
-        System.out.println(employeeName + " clocked out at " + timeOut);
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void displayTimecard() {
-        System.out.println("Timecard for " + employeeName + ":");
-        for (String entry : timeEntries) {
-            System.out.println(entry);
-        }
+    public double getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public void setHoursWorked(double hoursWorked) {
+        this.hoursWorked = hoursWorked;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Timecard{" +
+                "employeeId=" + employeeId +
+                ", date=" + date +
+                ", hoursWorked=" + hoursWorked +
+                ", status='" + status + '\'' +
+                '}';
     }
 }
 
-public class Main {
+class TimecardManager {
+    private List<Timecard> timecards = new ArrayList<>();
+
+    public void addTimecard(int employeeId, LocalDate date, double hoursWorked, String status) {
+        Timecard newTimecard = new Timecard(employeeId, date, hoursWorked, status);
+        timecards.add(newTimecard);
+        System.out.println("Added: " + newTimecard);
+    }
+
+    public void updateTimecard(int employeeId, LocalDate date, double hoursWorked, String status) {
+        Optional<Timecard> timecardOpt = findTimecard(employeeId, date);
+        if (timecardOpt.isPresent()) {
+            Timecard timecard = timecardOpt.get();
+            timecard.setHoursWorked(hoursWorked);
+            timecard.setStatus(status);
+            System.out.println("Updated: " + timecard);
+        } else {
+            System.out.println("Timecard not found for update.");
+        }
+    }
+
+    public void deleteTimecard(int employeeId, LocalDate date) {
+        Optional<Timecard> timecardOpt = findTimecard(employeeId, date);
+        if (timecardOpt.isPresent()) {
+            timecards.remove(timecardOpt.get());
+            System.out.println("Deleted timecard for employee " + employeeId + " on date " + date);
+        } else {
+            System.out.println("Timecard not found for deletion.");
+        }
+    }
+
+    public void displayTimecards() {
+        if (timecards.isEmpty()) {
+            System.out.println("No timecards available.");
+        } else {
+            timecards.forEach(System.out::println);
+        }
+    }
+
+    private Optional<Timecard> findTimecard(int employeeId, LocalDate date) {
+        return timecards.stream()
+                .filter(tc -> tc.getEmployeeId() == employeeId && tc.getDate().equals(date))
+                .findFirst();
+    }
+}
+
+public class TimecardApp {
     public static void main(String[] args) {
-        Timecard timecard = new Timecard("Nguyen Van A");
+        TimecardManager manager = new TimecardManager();
 
-        timecard.clockIn(); // Nhân viên clock in
-        // Giả lập thời gian làm việc
-        try {
-            Thread.sleep(2000); // Giả lập 2 giây
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        timecard.clockOut(); // Nhân viên clock out
+        // Add timecards
+        manager.addTimecard(101, LocalDate.of(2024, 11, 5), 8.0, "Submitted");
+        manager.addTimecard(101, LocalDate.of(2024, 11, 6), 7.5, "Submitted");
 
-        timecard.displayTimecard(); // Hiển thị thời gian làm việc
+        // Update timecard
+        manager.updateTimecard(101, LocalDate.of(2024, 11, 5), 8.5, "Approved");
+
+        // Display all timecards
+        manager.displayTimecards();
+
+        // Delete a timecard
+        manager.deleteTimecard(101, LocalDate.of(2024, 11, 6));
+
+        // Display all timecards again
+        manager.displayTimecards();
     }
 }
+
