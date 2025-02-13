@@ -1,109 +1,120 @@
-## Critical Rendering Path
+## Critical Rendering Path (CRP)
 
 ### Giới thiệu
 
-**Critical Rendering Path (CRP)** là quá trình trình duyệt chuyển đổi HTML, CSS và JavaScript thành nội dung có thể hiển thị trên màn hình. Nếu có các yếu tố ngăn cản quá trình này, trang web có thể **tải chậm** hoặc **không hiển thị đúng cách**.
+**Critical Rendering Path (CRP)** là quá trình trình duyệt biến đổi HTML, CSS và JavaScript thành nội dung hiển thị trên màn hình. Việc tối ưu CRP rất quan trọng để đảm bảo trải nghiệm người dùng mượt mà và tăng tốc độ tải trang.
 
-### Các bước chính trong CRP
+### Các bước trong Critical Rendering Path
 
-1. **Xử lý HTML**: Trình duyệt tải HTML và tạo ra **DOM (Document Object Model)**.
-2. **Xử lý CSS**: CSS được tải về và xử lý thành **CSSOM (CSS Object Model)**.
-3. **Kết hợp DOM & CSSOM**: DOM và CSSOM kết hợp để tạo **Render Tree**.
-4. **Layout (Bố cục)**: Trình duyệt tính toán vị trí của các phần tử.
-5. **Painting (Vẽ nội dung)**: Trình duyệt vẽ các phần tử lên màn hình.
+1. **Xử lý HTML**:
+   - Trình duyệt tải HTML từ máy chủ và xây dựng **DOM (Document Object Model)**.
+   - DOM là cây cấu trúc phản ánh nội dung của tài liệu HTML.
 
+2. **Xử lý CSS**:
+   - Trình duyệt tải các file CSS và tạo **CSSOM (CSS Object Model)**.
+   - CSSOM quyết định cách trang web sẽ hiển thị.
+
+3. **Kết hợp DOM và CSSOM**:
+   - DOM và CSSOM kết hợp tạo thành **Render Tree**.
+   - Render Tree chỉ bao gồm các phần tử có ảnh hưởng đến giao diện người dùng.
+
+4. **Quá trình Layout (Bố cục)**:
+   - Trình duyệt tính toán vị trí và kích thước của từng phần tử trên trang.
+   
+5. **Quá trình Painting (Vẽ nội dung lên màn hình)**:
+   - Trình duyệt vẽ các phần tử trên màn hình dựa vào thông tin từ Render Tree.
+   
 ### Cách tối ưu hóa CRP
 
-- **Giảm số lượng tài nguyên chặn hiển thị** bằng cách sử dụng `async` hoặc `defer` với JavaScript.
-- **Sử dụng `preload` và `prefetch`** để tải trước các tài nguyên quan trọng.
-- **Nén và tối ưu hóa hình ảnh** để tăng tốc thời gian tải trang.
+- **Tránh chặn hiển thị bởi CSS và JavaScript** bằng cách sử dụng `async` hoặc `defer`.
+- **Tận dụng Lazy Loading** để tải nội dung khi cần thiết.
+- **Giảm số lượng HTTP request** bằng cách gộp nhiều file CSS và JavaScript thành một.
+- **Sử dụng CDN (Content Delivery Network)** để tối ưu tốc độ tải tài nguyên.
+- **Tối ưu hình ảnh và sử dụng định dạng ảnh phù hợp (WebP, AVIF,...)**.
 
 ---
 
 ## XSS, CSRF
 
-### XSS (*Cross-Site Scripting*)
+### Cross-Site Scripting (XSS)
 
-**XSS** là một trong những lỗ hổng bảo mật phổ biến nhất trên web. Nó cho phép kẻ tấn công **chèn mã độc JavaScript** vào trang web để thực thi trên trình duyệt của nạn nhân.
+**XSS** là một kiểu tấn công phổ biến trong các ứng dụng web. Hacker chèn mã JavaScript độc hại vào trang web để thực thi trên trình duyệt của người dùng.
 
 #### Các loại XSS:
-
-1. **Stored XSS**: Mã độc được lưu trữ trên máy chủ và được tải về khi người dùng truy cập trang web.
-2. **Reflected XSS**: Mã độc được chèn vào URL hoặc form input và phản hồi lại người dùng.
+1. **Stored XSS**: Hacker lưu mã độc trên máy chủ và mã độc sẽ chạy mỗi khi người dùng truy cập trang.
+2. **Reflected XSS**: Hacker chèn mã vào URL hoặc form input và phản hồi lại người dùng.
 3. **DOM-based XSS**: Tấn công xảy ra khi JavaScript trên client-side xử lý dữ liệu không an toàn.
 
 #### Cách phòng chống:
+- **Sử dụng bộ lọc đầu vào (input sanitization)** để ngăn chặn mã độc.
+- **Dùng Content Security Policy (CSP)** để giới hạn các nguồn script được phép thực thi.
+- **Tránh sử dụng `innerHTML`, `eval()`**.
 
-- **Lọc và mã hóa đầu vào người dùng** trước khi hiển thị trên trang.
-- **Sử dụng CSP (Content Security Policy)** để hạn chế việc thực thi script.
-- **Tránh sử dụng `eval()` hoặc `innerHTML`** khi xử lý dữ liệu đầu vào.
+### Cross-Site Request Forgery (CSRF)
 
-### CSRF (*Cross-Site Request Forgery*)
-
-**CSRF** là một kiểu tấn công mà kẻ tấn công **lợi dụng phiên đăng nhập hợp lệ của người dùng** để thực hiện các hành động trái phép.
+**CSRF** là một kiểu tấn công mà hacker lừa người dùng thực hiện hành động trái phép trên một trang web mà họ đã đăng nhập.
 
 #### Cách phòng chống:
-
-- **Sử dụng token CSRF** trong các biểu mẫu và request quan trọng.
-- **Kiểm tra referrer header** để đảm bảo request đến từ nguồn hợp lệ.
-- **Giới hạn thời gian sống của session** để giảm thiểu rủi ro.
+- **Sử dụng CSRF Token** trong các request quan trọng.
+- **Kiểm tra HTTP Referrer Header** để đảm bảo request đến từ nguồn hợp lệ.
+- **Giới hạn thời gian sống của session và yêu cầu xác thực lại**.
 
 ---
 
 ## HTTP & SSL
 
-### HTTP (*HyperText Transfer Protocol*)
+### HTTP (HyperText Transfer Protocol)
 
-HTTP là giao thức truyền tải siêu văn bản được sử dụng trên World Wide Web.
+HTTP là giao thức truyền tải siêu văn bản, nền tảng của World Wide Web.
 
 #### Nhược điểm của HTTP:
-- Không bảo mật, dễ bị **tấn công Man-in-the-Middle (MITM)**.
-- Dữ liệu được truyền dưới dạng **plain text** và có thể bị đánh cắp.
+- Không có bảo mật, dễ bị tấn công **Man-in-the-Middle (MITM)**.
+- Dữ liệu truyền tải dưới dạng **plain text**, dễ bị đánh cắp.
 
-### SSL (*Secure Sockets Layer*)
+### SSL (Secure Sockets Layer)
 
-**SSL** là công nghệ mã hóa giúp bảo vệ dữ liệu truyền tải giữa trình duyệt và máy chủ web.
+SSL là công nghệ mã hóa giúp bảo vệ dữ liệu truyền tải giữa máy chủ và trình duyệt.
 
-#### Cách hoạt động của SSL:
-- Trình duyệt yêu cầu chứng chỉ SSL từ máy chủ.
-- Máy chủ gửi chứng chỉ SSL đã được xác thực bởi **CA (Certificate Authority)**.
-- Trình duyệt kiểm tra chứng chỉ và thiết lập kết nối an toàn.
+#### Cách hoạt động:
+1. Trình duyệt yêu cầu chứng chỉ SSL từ máy chủ.
+2. Máy chủ gửi chứng chỉ đã được xác thực bởi **CA (Certificate Authority)**.
+3. Trình duyệt kiểm tra chứng chỉ và thiết lập kết nối an toàn.
 
-#### Tại sao cần SSL?
-- **Bảo vệ dữ liệu người dùng** khi truyền qua internet.
-- **Tăng độ tin cậy của website** đối với khách hàng.
-- **Cải thiện SEO** vì Google ưu tiên các trang web có HTTPS.
+#### Lợi ích của SSL:
+- **Bảo mật dữ liệu người dùng**.
+- **Tăng độ tin cậy của website**.
+- **Cải thiện SEO**, vì Google ưu tiên các trang HTTPS.
 
 ---
 
-## CSP (*Content Security Policy*)
+## CSP (Content Security Policy)
 
-**CSP** giúp ngăn chặn **tấn công XSS và data injection** bằng cách kiểm soát tài nguyên nào được phép tải trên trang web.
+CSP giúp ngăn chặn tấn công **XSS và data injection** bằng cách kiểm soát các tài nguyên được tải trên trang web.
 
 ### Cấu hình CSP cơ bản:
 ```http
 Content-Security-Policy: default-src 'self'; img-src https://*; child-src 'none';
 ```
 
-### Cách triển khai CSP
-- **Sử dụng HTTP header** để đặt chính sách bảo mật.
-- **Dùng thẻ `<meta>`** nếu không thể thay đổi cấu hình máy chủ.
+### Cách triển khai CSP:
+- **Dùng HTTP header**.
+- **Dùng thẻ `<meta>` trong HTML** nếu không thể thay đổi cấu hình máy chủ.
 
 ---
 
 # HTML
 
-## Semantic
+## Semantic HTML
 
-Semantic HTML giúp **công cụ tìm kiếm hiểu nội dung trang web tốt hơn**, từ đó cải thiện **SEO và khả năng truy cập**.
+Semantic HTML giúp trang web dễ hiểu hơn với trình duyệt và công cụ tìm kiếm.
 
 ### Các thẻ HTML Semantic phổ biến:
 | Thẻ | Mô tả |
 |------|--------------------------------|
-| `<article>` | Định nghĩa một bài viết độc lập |
+| `<article>` | Định nghĩa bài viết độc lập |
 | `<section>` | Chia trang thành các phần nội dung |
-| `<header>` | Phần đầu của trang hoặc một phần nội dung |
-| `<footer>` | Phần chân trang hoặc phần cuối của nội dung |
+| `<header>` | Phần đầu của trang hoặc phần nội dung |
+| `<footer>` | Phần chân trang hoặc phần cuối nội dung |
 
 Ví dụ:
 ```html
